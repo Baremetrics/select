@@ -1,0 +1,40 @@
+{
+  "name": "BaremetricsSelect",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Baremetrics/select",
+  "authors": [
+    "Tyler van der Hoeven <hi@tyvdh.com>"
+  ],
+  "description": "The Baremetrics custom selection picker a glorified select box solution. It's super flexible and allows many different types and ranges of complex selections while at the end of the day generating a very simple, concise JSON object which you can use for whatever.",
+  "main": [
+    "dev/js/Select.js",
+    "dev/sass/application.scss"
+  ],
+  "dependencies": {
+    "jquery": "2.1.4"
+  },
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "select.js",
+    "baremetrics",
+    "custom",
+    "select",
+    "box",
+    "search",
+    "filter"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Baremetrics/select.git"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
