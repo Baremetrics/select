@@ -1,3 +1,109 @@
 .bm-select {
+  display: flex;
+  color: $black;
+  font-size: rem(12);
 
+  * {
+    box-sizing: border-box;
+  }
+  .bm-tag {
+    border-radius: $radius;
+    background-color: $mite;
+    position: relative;
+    display: flex;
+    margin: rem(0 6 6 0);
+  }
+  .bm-cell {
+    padding: rem(0 8);
+    border: 1px solid $mouse;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+  }
+  .bm-title {
+    text-transform: uppercase;
+    color: $gray;
+    font-size: rem(10);
+    border-radius: $radius 0 0 $radius;
+    border-right: none;
+  }
+  .bm-drop {
+    border-right: none;
+    cursor: pointer;
+    text-transform: capitalize;
+
+    &:hover, &.bm-open {
+
+      i:before, i:after {
+        background-color: $black;
+      }
+    }
+    &.bm-open {
+      box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
+      border-right: 1px solid;
+      border-color: $blue;
+
+      width: 100px;
+    }
+    i {
+      width: rem(8);
+      height: rem(10);
+      position: relative;
+      margin-left: rem(6);
+
+      &:before, &:after {
+        content: '';
+        position: absolute;
+        width: 5px;
+        height: 1px;
+        background-color: $rat;
+        bottom: 5px;
+      }
+      &:before {
+        transform: rotate(45deg);
+        left: 0;
+      }
+      &:after {
+        transform: rotate(-45deg);
+        right: 0;
+      }
+    }
+  }
+  .bm-dropdown {
+    position: absolute;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    border: 1px solid $mouse;
+    box-shadow: 0 0 5px $mouse;
+    border-radius: 0 0 $radius $radius;
+    padding: rem(6 0);
+    z-index: 0;
+
+    left: 44px;
+    top: 31px;
+    width: 100px;
+
+    .bm-item {
+      padding: rem(6 12);
+      cursor: pointer;
+      text-transform: capitalize;
+
+      &:hover {
+        background-color: $mite;
+      }
+    }
+  }
+  .bm-value {
+    outline: none;
+    border: 1px solid $mouse;
+    border-radius: 0 $radius $radius 0;
+
+    &:focus {
+      border-color: $blue;
+      box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
+    }
+  }
 }

@@ -1,15 +1,36 @@
-// Colors
+// Core Colors
+$gray: #a1abb3;
+$black: #242E35;
+$body: #4f565c;
 $blue: #2693D5;
 $bluemoon: #BFDEEC;
-$moon: #EBF1F4;
+$moon: #f0f5f7;
 $white: #FFFFFF;
-$rat: #9BA3A7;
-$mouse: #C3CACD;
+
+// Core Secondary Colors
+$green: #21BA6E;
+$red: #E23C3F;
+$yellow: #FED049;
+$orange: #FD7F3B;
+
+// Core Tertiary Colors
+$purple: #7049A3;
+$teal: #41B7CC;
+$pink: #D96EAE;
+$salmon: #E16070;
+$mustard: #EFC663;
+
+// Core Grayscale Colors
+$rhino: #4B555B;
+$rabbit: #737C81;
+$rat: #a1abb3;
+$mouse: #dae1e3;
+$mite: #f7f9fa;
 
 // Variables
 $font-family: "proxima-nova", Proxima Nova, "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 $rem-base: 16px;
-$radius: 5px;
+$radius: 3px;
 
 // Functions
 @function strip-unit($num) {
