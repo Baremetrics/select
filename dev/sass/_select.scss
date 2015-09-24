@@ -6,31 +6,26 @@
   * {
     box-sizing: border-box;
   }
+  [contenteditable]:empty:before {
+    content: attr(placeholder);
+    color: $rat;
+    display: block; /* For Firefox */
+  }
+
   .bm-tag {
-    border-radius: $radius;
     background-color: $white;
     position: relative;
     display: flex;
     margin: rem(0 12 12 0);
     color: $gray;
-    line-height: 30px;
 
     &.bm-active {
       background-color: $mite;
       color: $black;
     }
-    &.bm-open .bm-drop {
-      box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
-      border-right: 1px solid;
-      border-color: $blue;
-
-      i:before, i:after {
-        background-color: $black;
-      }
-    }
   }
   .bm-cell {
-    padding: rem(0 8);
+    padding: rem(8 8);
     border: 1px solid $mouse;
     display: flex;
     align-items: center;
@@ -41,7 +36,6 @@
     font-size: rem(10);
     color: $gray;
     border-radius: $radius 0 0 $radius;
-    border-right: none;
     cursor: pointer;
 
     &:hover ~ .bm-drop {
@@ -53,6 +47,7 @@
   }
   .bm-drop {
     border-radius: 0 $radius $radius 0;
+    margin-left: -1px;
     cursor: pointer;
 
     &:hover {
@@ -60,6 +55,19 @@
       i:before, i:after {
         background-color: $black;
       }
+    }
+    &.bm-open {
+      box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
+      border-color: $blue !important;
+      z-index: 1;
+
+      i:before, i:after {
+        background-color: $black;
+      }
+    }
+    &.bm-selected {
+      border-radius: 0;
+      margin-right: -1px;
     }
     i {
       width: rem(8);
@@ -111,14 +119,15 @@
       }
     }
   }
-  .bm-value {
+  .bm-input {
     outline: none;
-    border: 1px solid $mouse;
     border-radius: 0 $radius $radius 0;
+    cursor: text;
 
     &:focus {
       border-color: $blue;
       box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
+      z-index: 1;
     }
   }
 }

@@ -20,14 +20,15 @@ Select.prototype.addTagActions = function(tag) {
 
   var tag = {
     self: tag,
-    drop: null,
-    dropdown: null
+    drop: $('.bm-drop', tag),
+    dropdown: $('.bm-dropdown', tag),
+    input: $('.bm-input', tag)
   }
 
   $('.bm-drop, .bm-title', tag.self).off('click').click(function() {
-    if (!tag.self.hasClass('bm-open')) {
-      tag.drop = tag.self.addClass('bm-open');
-      tag.dropdown = $('.bm-dropdown', tag.self).show();
+    if (!tag.drop.hasClass('bm-open')) {
+      tag.drop.addClass('bm-open');
+      tag.dropdown.show();
     } else {
       self.closeDrop(tag);
     }
@@ -35,15 +36,27 @@ Select.prototype.addTagActions = function(tag) {
     $('.bm-item', tag.dropdown).off('click').click(function() {
       var new_value = $(this).html();
       var new_query = $(this).data('query');
+      var dropdown_type = tag.dropdown.data('type');
 
       $('span', tag.drop).data('query', new_query).html(new_value);
       tag.self.addClass('bm-active');
 
-      console.log(tag.dropdown.data('type'));
-    });
+      if (dropdown_type == 'input') {
+        if (new_query == 'all') {
+          tag.drop.removeClass('bm-selected');
+          tag.input.hide();
+        } else {
+          tag.drop.addClass('bm-selected');
+          tag.input.off('focus').focus(function() {
+            self.closeDrop(tag);
+          }).show();
+        }
+      }
 
-    $('.bm-value', tag.self).off('focus').focus(function() {
-      self.closeDrop(tag);
+      else if (dropdown_type == 'multi') {
+        var drop_clone = $(tag.drop).clone();
+        $(tag.drop).after(drop_clone);
+      }
     });
 
     self.cloud.off('click').click(function(event) {
@@ -82,8 +95,8 @@ Select.prototype.addTagHTML = function(object) {
 
   HTML += '</ul></div>';
 
-  if (type == this.Input) {
-    HTML += '<div class="bm-value bm-cell" style="display:none;" contenteditable placeholder="value"></div>';
+  if (type == 'input') {
+    HTML += '<div class="bm-input bm-cell" style="display:none;" contenteditable placeholder="Enter value..."></div>';
   }
 
   HTML += '</div>';
