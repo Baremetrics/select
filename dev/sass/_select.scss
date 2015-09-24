@@ -9,7 +9,6 @@
   [contenteditable]:empty:before {
     content: attr(placeholder);
     color: $rat;
-    display: block; /* For Firefox */
   }
 
   .bm-tag {
@@ -38,7 +37,7 @@
     border-radius: $radius 0 0 $radius;
     cursor: pointer;
 
-    &:hover ~ .bm-drop {
+    &:hover ~ .bm-drop:nth-child(2) {
 
       i:before, i:after {
         background-color: $black;
@@ -56,6 +55,12 @@
         background-color: $black;
       }
     }
+    &.bm-selected {
+      border-radius: 0;
+    }
+    &.bm-more {
+      color: $gray;
+    }
     &.bm-open {
       box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
       border-color: $blue !important;
@@ -64,10 +69,6 @@
       i:before, i:after {
         background-color: $black;
       }
-    }
-    &.bm-selected {
-      border-radius: 0;
-      margin-right: -1px;
     }
     i {
       width: rem(8);
@@ -123,6 +124,7 @@
     outline: none;
     border-radius: 0 $radius $radius 0;
     cursor: text;
+    margin-left: -1px;
 
     &:focus {
       border-color: $blue;

@@ -11,12 +11,10 @@ $(function() {
           {
             title: 'Contains',
             query: 'contain',
-            type: String,
           },
           {
             title: 'More then',
             query: 'gt',
-            type: Number,
           }
         ]
       },
@@ -27,12 +25,10 @@ $(function() {
           {
             title: 'Contains',
             query: 'contain',
-            type: String,
           },
           {
             title: 'Less then',
             query: 'lt',
-            type: Number,
           }
         ]
       },
