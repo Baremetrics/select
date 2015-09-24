@@ -8,43 +8,58 @@
   }
   .bm-tag {
     border-radius: $radius;
-    background-color: $mite;
+    background-color: $white;
     position: relative;
     display: flex;
-    margin: rem(0 6 6 0);
-  }
-  .bm-cell {
-    padding: rem(0 8);
-    border: 1px solid $mouse;
-    line-height: 30px;
-    display: flex;
-    align-items: center;
-    z-index: 1;
-  }
-  .bm-title {
-    text-transform: uppercase;
+    margin: rem(0 12 12 0);
     color: $gray;
-    font-size: rem(10);
-    border-radius: $radius 0 0 $radius;
-    border-right: none;
-  }
-  .bm-drop {
-    border-right: none;
-    cursor: pointer;
-    text-transform: capitalize;
+    line-height: 30px;
 
-    &:hover, &.bm-open {
+    &.bm-active {
+      background-color: $mite;
+      color: $black;
+    }
+    &.bm-open .bm-drop {
+      box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
+      border-right: 1px solid;
+      border-color: $blue;
 
       i:before, i:after {
         background-color: $black;
       }
     }
-    &.bm-open {
-      box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
-      border-right: 1px solid;
-      border-color: $blue;
+  }
+  .bm-cell {
+    padding: rem(0 8);
+    border: 1px solid $mouse;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  .bm-title {
+    text-transform: uppercase;
+    font-size: rem(10);
+    color: $gray;
+    border-radius: $radius 0 0 $radius;
+    border-right: none;
+    cursor: pointer;
 
-      width: 100px;
+    &:hover ~ .bm-drop {
+
+      i:before, i:after {
+        background-color: $black;
+      }
+    }
+  }
+  .bm-drop {
+    border-radius: 0 $radius $radius 0;
+    cursor: pointer;
+
+    &:hover {
+
+      i:before, i:after {
+        background-color: $black;
+      }
     }
     i {
       width: rem(8);
@@ -69,30 +84,30 @@
         right: 0;
       }
     }
-  }
-  .bm-dropdown {
-    position: absolute;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    left: 0;
-    border: 1px solid $mouse;
-    box-shadow: 0 0 5px $mouse;
-    border-radius: 0 0 $radius $radius;
-    padding: rem(6 0);
-    z-index: 0;
+    .bm-dropdown {
+      position: absolute;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      left: 0;
+      border: 1px solid $mouse;
+      box-shadow: 0 0 5px $mouse;
+      border-radius: $radius;
+      padding: rem(6 0);
+      z-index: 0;
+      left: 0;
+      top: calc(100% + 1px);
+      color: $gray;
 
-    left: 44px;
-    top: 31px;
-    width: 100px;
+      .bm-item {
+        padding: rem(6 12);
+        cursor: pointer;
+        line-height: 1;
+        white-space: nowrap;
 
-    .bm-item {
-      padding: rem(6 12);
-      cursor: pointer;
-      text-transform: capitalize;
-
-      &:hover {
-        background-color: $mite;
+        &:hover {
+          background-color: $mite;
+        }
       }
     }
   }
