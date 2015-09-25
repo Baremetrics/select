@@ -67,7 +67,7 @@
         background-color: $black;
       }
     }
-    &.bm-selected {
+    &.bm-inner {
       border-radius: 0;
     }
     &.bm-more {
@@ -164,6 +164,7 @@
         }
         &.bm-disabled {
           background-color: $mite;
+          pointer-events: none;
         }
       }
     }
