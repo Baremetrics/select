@@ -1,8 +1,9 @@
 'use strict';
 
 $(function() {
-  new Select({
+  var filters = new Select({
     cloud: '.bm-select',
+    submit: '.bm-submit',
     tags: [
       {
         title: 'Name',
@@ -62,4 +63,12 @@ $(function() {
       }
     ]
   });
-})
+  
+  $('.bm-reset').click(function() {
+    filters.reset();
+  });
+
+  $('.bm-submit').click(function() {
+    console.log( filters.call() );
+  });
+});
