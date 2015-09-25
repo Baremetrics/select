@@ -162,6 +162,9 @@
         &:hover {
           background-color: $mite;
         }
+        &.bm-disabled {
+          background-color: $mite;
+        }
       }
     }
   }

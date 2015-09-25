@@ -64,7 +64,6 @@ Select.prototype.addTagActions = function(tag) {
           drop_clone.removeClass('bm-open').addClass('bm-more');
           drop_clone.find('.bm-dropdown').hide();
           drop_clone.find('.bm-dropdown').children().first().hide();
-          // drop_clone.find('.bm-dropdown').find('[data-query="'+ new_query +'"]').remove();
           drop_clone.find('span').html('More');
 
           if (used_tags != unused_tags) {
@@ -72,10 +71,16 @@ Select.prototype.addTagActions = function(tag) {
             $(target).after(drop_clone);
             self.addTagActions(tag);
           }
+
+          $('.bm-drop span', tag).each(function() {
+            var query = $(this).data('query');
+            $('.bm-dropdown', tag).find('[data-query="'+ query +'"]').addClass('bm-disabled');
+          });
+
         } else if (new_query == 'all') {
           target.removeClass('bm-selected');
           $('.bm-drop', tag).not(target).remove();
-          target.next().remove();
+          $('.bm-dropdown li', tag).removeClass('bm-disabled');
         }
       }
     });
@@ -93,14 +98,15 @@ Select.prototype.addTagActions = function(tag) {
     var tag = $(this).parent();
     var prev = tag.prev();
     var next = tag.next();
+    var query = tag.find('span').data('query');
+
+    tag.parent().find('.bm-dropdown').find('[data-query="'+ query +'"]').removeClass('bm-disabled');
 
     if (prev.hasClass('bm-selected') && !next.not('.bm-more').hasClass('bm-drop')) {
       tag.addClass('bm-more').find('span').html('More');
     } else if (next.not('.bm-more').hasClass('bm-drop')) {
-
       tag.remove();
       next.parent().find('.bm-dropdown:first li').show();
-
     } else if (next.hasClass('bm-input')) {
       next.hide();
       tag.parent().removeClass('bm-active');
