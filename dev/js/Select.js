@@ -40,17 +40,18 @@ Select.prototype.addTagActions = function(tag) {
       tag.addClass('bm-active');
 
       if (dropdown_type == 'input') {
+        target.removeClass('bm-selected');
+
         if (new_query == 'all') {
-          target.removeClass('bm-selected');
           input.hide();
         } else {
           target.addClass('bm-selected');
           input
             .show()
+            .off('focus')
             .focus()
             .off('focus')
-            .focus(function() {self.closeDrop(tag)})
-            .show();
+            .focus(function() {self.closeDrop(tag)});
         }
       }
 
@@ -96,8 +97,10 @@ Select.prototype.addTagActions = function(tag) {
     if (prev.hasClass('bm-selected') && !next.not('.bm-more').hasClass('bm-drop')) {
       tag.addClass('bm-more').find('span').html('More');
     } else if (next.not('.bm-more').hasClass('bm-drop')) {
+
       tag.remove();
-      next.find('.bm-dropdown li').show();
+      next.parent().find('.bm-dropdown:first li').show();
+
     } else if (next.hasClass('bm-input')) {
       next.hide();
       tag.parent().removeClass('bm-active');
