@@ -73,6 +73,7 @@ Select.prototype.addTagActions = function(tag) {
           }
         } else if (new_query == 'all') {
           target.removeClass('bm-selected');
+          $('.bm-drop', tag).not(target).remove();
           target.next().remove();
         }
       }
@@ -92,7 +93,7 @@ Select.prototype.addTagActions = function(tag) {
     var prev = tag.prev();
     var next = tag.next();
 
-    if (prev.hasClass('bm-selected')) {
+    if (prev.hasClass('bm-selected') && !next.not('.bm-more').hasClass('bm-drop')) {
       tag.addClass('bm-more').find('span').html('More');
     } else if (next.not('.bm-more').hasClass('bm-drop')) {
       tag.remove();
