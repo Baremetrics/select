@@ -168,12 +168,53 @@ Select.prototype.addTagHTML = function(object) {
   $(this.cloud).append(HTML);
 }
 
+Select.prototype.reset = function() {
+  $('.bm-active', this.cloud).each(function() {
+    var d = $(this).removeClass('bm-active');
+    
+    $('.bm-drop', d).not(':first').remove();
+    $('.bm-dropdown li', d).removeClass('bm-disabled');
+    $('.bm-input', d).hide();
+    $('.bm-drop:first', d).removeClass('bm-active bm-inner').find('span').html('All');
+  });
+}
+
+Select.prototype.call = function() {
+  var result = [];
+
+  $('.bm-active', this.cloud).each(function() {
+    var d = $(this);
+    var d_type = d.find('.bm-dropdown').data('type');
+
+    result.push({
+      title: d.find('.bm-title').html(),
+      modifier: d_type == 'input' ? d.find('.bm-drop span').data('query') : null,
+      input: (function() {
+        if (d.find('.bm-input').is(':visible')) {
+          return d.find('.bm-input').html();
+        } return null;
+      })(),
+      values: (function() {
+        if (d_type != 'input') {
+          return $.map(d.find('.bm-drop').not('.bm-more'), function(e) {
+            return $(e).find('span').data('query');
+          });
+        }
+      })()
+    });
+  });
+
+  return result;
+}
+
 function bmInput() {
   return 'input';
 }
+
 function bmMulti() {
   return 'multi';
 }
+
 function bmSingle() {
   return 'single';
 }
