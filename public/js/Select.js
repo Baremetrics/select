@@ -62,7 +62,7 @@ Select.prototype.addTagActions = function(tag) {
 
           drop_clone.removeClass('bm-open').addClass('bm-more');
           drop_clone.find('.bm-dropdown').hide();
-          drop_clone.find('.bm-dropdown').children().first().remove();
+          drop_clone.find('.bm-dropdown').children().first().hide();
           // drop_clone.find('.bm-dropdown').find('[data-query="'+ new_query +'"]').remove();
           drop_clone.find('span').html('More');
 
@@ -86,6 +86,27 @@ Select.prototype.addTagActions = function(tag) {
       event.stopPropagation();
     });
   });
+
+  $('.bm-close', tag).off('click').click(function() {
+    var tag = $(this).parent();
+    var prev = tag.prev();
+    var next = tag.next();
+
+    if (prev.hasClass('bm-selected')) {
+      tag.addClass('bm-more').find('span').html('More');
+    } else if (next.not('.bm-more').hasClass('bm-drop')) {
+      tag.remove();
+      next.find('.bm-dropdown li').show();
+    } else if (next.hasClass('bm-input')) {
+      next.hide();
+      tag.parent().removeClass('bm-active');
+      tag.removeClass('bm-selected').find('span').html('All');
+    } else {
+      next.remove();
+      tag.parent().removeClass('bm-active');
+      tag.removeClass('bm-selected').find('span').html('All');
+    }
+  });
 }
 
 Select.prototype.closeDrop = function(tag) {
@@ -96,7 +117,7 @@ Select.prototype.closeDrop = function(tag) {
 Select.prototype.addTagHTML = function(object) {
   var HTML = '<div class="bm-tag">'+
     '<div class="bm-title bm-cell">'+ object.title +'</div>'+
-    '<div class="bm-drop bm-cell"><span>All</span> <i></i>';
+    '<div class="bm-drop bm-cell"><i class="bm-close"></i> <span>All</span> <i class="bm-caret"></i>';
 
   var type = object.type ? object.type() : bmSingle();
 

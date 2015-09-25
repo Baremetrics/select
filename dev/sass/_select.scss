@@ -17,10 +17,19 @@
     display: flex;
     margin: rem(0 12 12 0);
     color: $gray;
+  }
+  .bm-active {
+    background-color: $mite;
 
-    &.bm-active {
-      background-color: $mite;
-      color: $black;
+    .bm-drop {
+
+      span {
+        text-indent: 1em;
+        color: $black;
+      }
+      .bm-close {
+        display: flex;
+      }
     }
   }
   .bm-cell {
@@ -39,7 +48,7 @@
 
     &:hover ~ .bm-drop:nth-child(2) {
 
-      i:before, i:after {
+      .bm-caret:before, .bm-caret:after {
         background-color: $black;
       }
     }
@@ -51,7 +60,7 @@
 
     &:hover {
 
-      i:before, i:after {
+      .bm-caret:before, .bm-caret:after {
         background-color: $black;
       }
     }
@@ -59,18 +68,52 @@
       border-radius: 0;
     }
     &.bm-more {
-      color: $gray;
+
+      .bm-close {
+        display: none;
+      }
+      span {
+        color: $gray;
+        text-indent: 0;
+      }
     }
     &.bm-open {
       box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
       border-color: $blue !important;
       z-index: 1;
 
-      i:before, i:after {
+      .bm-caret:before, .bm-caret:after {
         background-color: $black;
       }
     }
-    i {
+    .bm-close {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1.2em;
+      height: 100%;
+      align-items: center;
+      justify-content: flex-end;
+      display: none;
+
+      &:hover {
+        color: $black;
+
+        ~ .bm-caret {
+
+          &:before, &:after {
+            background-color: $gray;
+          }
+        }
+      }
+      &:before {
+        content: '\00d7';
+        font-size: 1.2em;
+        font-style: normal;
+        font-weight: 200;
+      }
+    }
+    .bm-caret {
       width: rem(8);
       height: rem(10);
       position: relative;
@@ -103,9 +146,8 @@
       box-shadow: 0 0 5px $mouse;
       border-radius: $radius;
       padding: rem(6 0);
-      z-index: 0;
       left: 0;
-      top: calc(100% + 1px);
+      top: calc(100% + 2px);
       color: $gray;
 
       .bm-item {
