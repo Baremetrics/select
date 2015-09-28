@@ -6,11 +6,12 @@ $(function() {
     tags: [
       {
         title: 'Name',
-        type: bmInput,
+        type: 'bmInput',
         options: [
           {
             title: 'Contains',
             query: 'contain',
+            selected: 'Metrics',
           },
           {
             title: 'More then',
@@ -20,7 +21,7 @@ $(function() {
       },
       {
         title: 'Employees',
-        type: bmInput,
+        type: 'bmInput',
         options: [
           {
             title: 'Contains',
@@ -29,21 +30,25 @@ $(function() {
           {
             title: 'Less then',
             query: 'lte',
+            selected: 20,
           }
         ]
       },
       {
         title: 'Tech',
-        type: bmMulti,
+        type: 'bmMulti',
         options: [
           {
             title: 'Python',
+            selected: true,
           },
           {
             title: 'MongoDB',
+            selected: true,
           },
           {
             title: 'Node',
+            selected: true,
           }
         ]
       },
@@ -57,6 +62,7 @@ $(function() {
           {
             title: 'Europe',
             query: 'eu',
+            selected: true,
           }
         ]
       }
