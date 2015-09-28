@@ -15,7 +15,7 @@ $(function() {
           },
           {
             title: 'More then',
-            query: 'gt',
+            query: 'gte',
           }
         ]
       },
@@ -29,7 +29,7 @@ $(function() {
           },
           {
             title: 'Less then',
-            query: 'lt',
+            query: 'lte',
           }
         ]
       },
@@ -69,6 +69,12 @@ $(function() {
   });
 
   $('.bm-submit').click(function() {
-    console.log( filters.call() );
+    var filters_array = filters.call();
+    var result_cloud = $('.bm-result').empty();
+
+    $.each(filters_array, function(i, d) {
+      var HTML = filters.addResultHTML(d);
+      result_cloud.append(HTML);
+    });
   });
 });
