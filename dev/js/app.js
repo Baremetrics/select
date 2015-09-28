@@ -6,7 +6,7 @@ $(function() {
     tags: [
       {
         title: 'Name',
-        type: bmInput,
+        type: 'bmInput',
         options: [
           {
             title: 'Contains',
@@ -21,7 +21,7 @@ $(function() {
       },
       {
         title: 'Employees',
-        type: bmInput,
+        type: 'bmInput',
         options: [
           {
             title: 'Contains',
@@ -36,7 +36,7 @@ $(function() {
       },
       {
         title: 'Tech',
-        type: bmMulti,
+        type: 'bmMulti',
         options: [
           {
             title: 'Python',
@@ -48,6 +48,7 @@ $(function() {
           },
           {
             title: 'Node',
+            selected: true,
           }
         ]
       },

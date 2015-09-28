@@ -3,19 +3,20 @@
 function Select(options) {
   if (!options) 
     return true;
-  
+
   this.cloud = $(options.cloud);
   this.tags = options.tags;
 
   var self = this;
 
+  // Make the tags
   $(this.tags).each(function(i, d) {
     self.addSelectHTML(d);
   });
   
   $('.bm-tag', this.cloud).each(function(i) {
-    self.addSelectActions($(this));
-    self.addSelectValues($(this), self.tags[i].options);
+    self.addSelectActions($(this)); // Add actions to the new tags
+    self.addSelectValues($(this), self.tags[i].options); // Add values to the new tags
   });
 }
 
@@ -73,13 +74,18 @@ Select.prototype.addSelectActions = function(tag) {
             target.addClass('bm-inner');
             $(target).after(drop_clone);
             self.addSelectActions(tag);
+          } else {
+            $('span', target).data('query', 'all').html('All');
+            $('.bm-drop', tag).not(target).remove();
+            $('.bm-dropdown li', tag).removeClass('bm-disabled');
+
+            return true;
           }
 
           $('.bm-drop span', tag).each(function() {
             var query = $(this).data('query');
             $('.bm-dropdown', tag).find('[data-query="'+ query +'"]').addClass('bm-disabled');
           });
-
         } else if (new_query == 'all') {
           target.removeClass('bm-inner');
           $('.bm-drop', tag).not(target).remove();
@@ -110,7 +116,7 @@ Select.prototype.addSelectActions = function(tag) {
       if (prev.hasClass('bm-title') && (next.hasClass('bm-more') || !next.length)) {
         next.remove();
         target.parent().removeClass('bm-active');
-        target.removeClass('bm-inner').find('span').html('All');
+        target.removeClass('bm-inner').find('span').data('query', 'none').html('None');
       } else if (!target.parent().find('.bm-more').length) {
         var target_clone = target.clone();
 
@@ -128,18 +134,13 @@ Select.prototype.addSelectActions = function(tag) {
     } else if (dropdown_type == 'input') {
       next.hide();
       target.parent().removeClass('bm-active');
-      target.removeClass('bm-inner').find('span').html('All');
+      target.removeClass('bm-inner').find('span').data('query', 'none').html('None');
     } else {
       next.remove();
       target.parent().removeClass('bm-active');
-      target.removeClass('bm-inner').find('span').html('All');
+      target.removeClass('bm-inner').find('span').data('query', 'none').html('None');
     }
   });
-}
-
-Select.prototype.closeDrop = function(tag) {
-  $('.bm-drop', tag).removeClass('bm-open');
-  $('.bm-dropdown', tag).hide();
 }
 
 Select.prototype.addSelectValues = function(tag, options) {
@@ -147,28 +148,37 @@ Select.prototype.addSelectValues = function(tag, options) {
     if (d.selected) {
       var trigger = $('.bm-drop', tag).last().trigger('click');
       var query = d.query || d.title.replace(/[^a-zA-Z]/g, '').toLowerCase();
-      
+
       $('[data-query="'+ query +'"]', trigger).trigger('click');
-      $('.bm-input', tag).html(d.selected).blur();
+      $('.bm-input', tag).html(d.selected);
     }
   });
+
+  window.setTimeout(function() {
+    $('.bm-input').blur();
+  }, 0);
+}
+
+Select.prototype.closeDrop = function(tag) {
+  $('.bm-drop', tag).removeClass('bm-open');
+  $('.bm-dropdown', tag).hide();
 }
 
 Select.prototype.addSelectHTML = function(object) {
   var HTML = '<div class="bm-tag">'+
     '<div class="bm-title bm-cell">'+ object.title +'</div>'+
-    '<div class="bm-drop bm-cell"><i class="bm-close"></i> <span>All</span> <i class="bm-caret"></i>';
+    '<div class="bm-drop bm-cell"><i class="bm-close"></i> <span data-query="none">None</span> <i class="bm-caret"></i>';
 
-  var type = object.type ? object.type() : bmSingle();
+  var type = object.type ? this[object.type]() : this.bmSingle();
 
   HTML += '<ul class="bm-dropdown" data-type="'+ type +'" style="display:none;">';
 
   $.each(object.options, function(i, d) {
-    if (i == 0) {
+    if (i == 0 && type == 'multi') {
       HTML += '<li class="bm-item" data-query="all">All</li>';
     }
     
-    var query = d.query || d.title.replace(/[^a-zA-Z]/g, '').toLowerCase()
+    var query = d.query || d.title.replace(/[^a-zA-Z]/g, '').toLowerCase();
 
     HTML += '<li class="bm-item" data-query="'+ query +'">'+ d.title +'</li>';
   });
@@ -185,19 +195,26 @@ Select.prototype.addSelectHTML = function(object) {
 }
 
 Select.prototype.addResultHTML = function(object) {
+  var options = $.map(object.options, function(d) {
+    return {
+      title: d.title,
+      selected: d.selected || false
+    }
+  }).filter(function(e) {return e.selected != false});
+
+  if (!options.length)
+    return false;
+
   var HTML = '<div class="bm-tag bm-final">'+
     '<div class="bm-title bm-cell">'+ object.title +'</div>';
 
-  if (object.modifier) {
-    HTML += '<div class="bm-modifier bm-cell">'+ object.modifier.title +'</div>';
-  }
-
-  if (object.input) {
-    HTML += '<div class="bm-values bm-cell">'+ (Number(object.input) ? object.input : '"'+ object.input +'"') +'</div>';
-  } else if (object.values) {
+  if (this[object.type] == this.bmInput) {
+    HTML += '<div class="bm-modifier bm-cell">'+ options[0].title +'</div>';
+    HTML += '<div class="bm-values bm-cell">'+ (Number(options[0].selected) ? options[0].selected : '"'+ options[0].selected +'"') +'</div>';
+  } else {
     HTML += '<div class="bm-values bm-cell">';
 
-    $.each(object.values, function(i, d) {
+    $.each(options, function(i, d) {
       HTML += (i == 0 ? '' : ', ') + d.title;
     });
 
@@ -209,6 +226,33 @@ Select.prototype.addResultHTML = function(object) {
   return HTML;
 }
 
+Select.prototype.call = function() {
+  var self = this;
+  var tags = self.tags;
+
+  $('.bm-tag', this.cloud).each(function(i, d) {
+    var title = $('.bm-title', d).html();
+    var index = tags.map(function(e){return e.title}).indexOf(title);
+    var selected = $.makeArray($('.bm-drop:not(.bm-more) span', d).map(function() {
+      return $(this).data('query');
+    }));
+
+    $.each(tags[index].options, function(j, e) {
+      var query = e.query || e.title.replace(/[^a-zA-Z]/g, '').toLowerCase();
+
+      if (selected.indexOf(query) != -1 || selected[0] == 'all') {
+        var input = $('.bm-input', d).html();
+
+        tags[index].options[j].selected = input || true;
+      } else {
+        tags[index].options[j].selected = false;
+      }
+    });
+  });
+
+  return tags;
+}
+
 Select.prototype.reset = function() {
   $('.bm-active', this.cloud).each(function() {
     var d = $(this).removeClass('bm-active');
@@ -216,53 +260,18 @@ Select.prototype.reset = function() {
     $('.bm-drop', d).not(':first').remove();
     $('.bm-dropdown li', d).removeClass('bm-disabled');
     $('.bm-input', d).hide();
-    $('.bm-drop:first', d).removeClass('bm-active bm-inner').find('span').html('All');
+    $('.bm-drop:first', d).removeClass('bm-active bm-inner').find('span').data('query', 'none').html('None');
   });
 }
 
-Select.prototype.call = function() {
-  var result = [];
-
-  $('.bm-active', this.cloud).each(function() {
-    var d = $(this);
-    var d_type = d.find('.bm-dropdown').data('type');
-
-    result.push({
-      title: d.find('.bm-title').html(),
-      modifier: d_type == 'input' ? {
-        title: d.find('.bm-drop span').html(),
-        query: d.find('.bm-drop span').data('query')
-      } : null,
-      input: (function() {
-        if (d.find('.bm-input').is(':visible')) {
-          return d.find('.bm-input').html();
-        } return null;
-      })(),
-      values: (function() {
-        if (d_type != 'input') {
-          return $.map(d.find('.bm-drop').not('.bm-more'), function(e) {
-            var span = $(e).find('span');
-            return {
-              title: span.html(),
-              query: span.data('query')
-            }
-          });
-        }
-      })()
-    });
-  });
-
-  return result;
-}
-
-function bmInput() {
+Select.prototype.bmInput = function() {
   return 'input';
 }
 
-function bmMulti() {
+Select.prototype.bmMulti = function() {
   return 'multi';
 }
 
-function bmSingle() {
+Select.prototype.bmSingle = function() {
   return 'single';
 }

@@ -4,6 +4,13 @@ html, body {
 }
 .select, .result {
   font-family: $font-family;
+  position: relative;
+}
+.select {
+  z-index: 1;
+}
+.result {
+  z-index: 0;
 }
 button {
   margin: rem(0 6 6 0);

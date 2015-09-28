@@ -19,6 +19,14 @@
     color: $gray;
     z-index: 10;
   }
+
+  .bm-cell {
+    padding: rem(8 8);
+    border: 1px solid $mouse;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
   .bm-active {
     background-color: $mite;
 
@@ -36,16 +44,10 @@
       color: $black;
     }
   }
-  .bm-cell {
-    padding: rem(8 8);
-    border: 1px solid $mouse;
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
   .bm-final {
     background-color: $mite;
   }
+
   .bm-title {
     text-transform: uppercase;
     font-size: rem(10);
@@ -69,6 +71,11 @@
     border-radius: 0 3px 3px 0;
     border-left: none;
     color: $black;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
   }
   .bm-drop {
     border-radius: 0 3px 3px 0;
@@ -84,6 +91,17 @@
     &.bm-inner {
       border-radius: 0;
     }
+    &.bm-open {
+      box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
+      border-color: $blue;
+      
+      + .bm-drop {
+        border-left: 1px solid $blue;
+      }
+      .bm-caret:before, .bm-caret:after {
+        background-color: $black;
+      }
+    }
     &.bm-more {
 
       .bm-close {
@@ -94,12 +112,35 @@
         text-indent: 0;
       }
     }
-    &.bm-open {
-      box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
-      border-color: $blue !important;
+    .bm-dropdown {
+      position: absolute;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      left: 0;
+      border: 1px solid $mouse;
+      box-shadow: 0 0 5px $mouse;
+      background-color: $white;
+      border-radius: 3px;
+      padding: rem(6 0);
+      left: 0;
+      top: calc(100% + 2px);
+      color: $gray;
+      z-index: -1;
 
-      .bm-caret:before, .bm-caret:after {
-        background-color: $black;
+      .bm-item {
+        padding: rem(6 12);
+        cursor: pointer;
+        line-height: 1;
+        white-space: nowrap;
+
+        &:hover {
+          background-color: $mite;
+        }
+        &.bm-disabled {
+          background-color: $mite;
+          pointer-events: none;
+        }
       }
     }
     .bm-close {
@@ -150,37 +191,6 @@
       &:after {
         transform: rotate(-45deg);
         right: 0;
-      }
-    }
-    .bm-dropdown {
-      position: absolute;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      left: 0;
-      border: 1px solid $mouse;
-      box-shadow: 0 0 5px $mouse;
-      background-color: $white;
-      border-radius: 3px;
-      padding: rem(6 0);
-      left: 0;
-      top: calc(100% + 2px);
-      color: $gray;
-      z-index: -1;
-
-      .bm-item {
-        padding: rem(6 12);
-        cursor: pointer;
-        line-height: 1;
-        white-space: nowrap;
-
-        &:hover {
-          background-color: $mite;
-        }
-        &.bm-disabled {
-          background-color: $mite;
-          pointer-events: none;
-        }
       }
     }
   }
