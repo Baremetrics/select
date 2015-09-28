@@ -169,8 +169,6 @@ Select.prototype.addSelectHTML = function(object) {
 }
 
 Select.prototype.addResultHTML = function(object) {
-  console.log(object);
-
   var HTML = '<div class="bm-tag bm-final">'+
     '<div class="bm-title bm-cell">'+ object.title +'</div>';
 
@@ -180,9 +178,7 @@ Select.prototype.addResultHTML = function(object) {
 
   if (object.input) {
     HTML += '<div class="bm-values bm-cell">'+ (Number(object.input) ? object.input : '"'+ object.input +'"') +'</div>';
-  } 
-
-  else if (object.values) {
+  } else if (object.values) {
     HTML += '<div class="bm-values bm-cell">';
 
     $.each(object.values, function(i, d) {
