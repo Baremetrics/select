@@ -2,8 +2,7 @@
 
 $(function() {
   var filters = new Select({
-    cloud: '.bm-select',
-    submit: '.bm-submit',
+    cloud: '.select',
     tags: [
       {
         title: 'Name',
@@ -64,13 +63,13 @@ $(function() {
     ]
   });
   
-  $('.bm-reset').click(function() {
+  $('.reset').click(function() {
     filters.reset();
   });
 
-  $('.bm-submit').click(function() {
+  $('.submit').click(function() {
     var filters_array = filters.call();
-    var result_cloud = $('.bm-result').empty();
+    var result_cloud = $('.result').empty();
 
     $.each(filters_array, function(i, d) {
       var HTML = filters.addResultHTML(d);
