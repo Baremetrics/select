@@ -1,6 +1,9 @@
 'use strict';
 
 function Select(options) {
+  if (!options) 
+    return true;
+  
   this.cloud = $(options.cloud);
   this.tags = options.tags;
 
@@ -10,8 +13,9 @@ function Select(options) {
     self.addSelectHTML(d);
   });
   
-  $('.bm-tag', this.cloud).each(function() {
+  $('.bm-tag', this.cloud).each(function(i) {
     self.addSelectActions($(this));
+    self.addSelectValues($(this), self.tags[i].options);
   });
 }
 
@@ -136,6 +140,18 @@ Select.prototype.addSelectActions = function(tag) {
 Select.prototype.closeDrop = function(tag) {
   $('.bm-drop', tag).removeClass('bm-open');
   $('.bm-dropdown', tag).hide();
+}
+
+Select.prototype.addSelectValues = function(tag, options) {
+  $.each(options, function(i, d) {
+    if (d.selected) {
+      var trigger = $('.bm-drop', tag).last().trigger('click');
+      var query = d.query || d.title.replace(/[^a-zA-Z]/g, '').toLowerCase();
+      
+      $('[data-query="'+ query +'"]', trigger).trigger('click');
+      $('.bm-input', tag).html(d.selected).blur();
+    }
+  });
 }
 
 Select.prototype.addSelectHTML = function(object) {

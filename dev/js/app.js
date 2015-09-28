@@ -11,6 +11,7 @@ $(function() {
           {
             title: 'Contains',
             query: 'contain',
+            selected: 'Metrics',
           },
           {
             title: 'More then',
@@ -29,6 +30,7 @@ $(function() {
           {
             title: 'Less then',
             query: 'lte',
+            selected: 20,
           }
         ]
       },
@@ -38,9 +40,11 @@ $(function() {
         options: [
           {
             title: 'Python',
+            selected: true,
           },
           {
             title: 'MongoDB',
+            selected: true,
           },
           {
             title: 'Node',
@@ -57,6 +61,7 @@ $(function() {
           {
             title: 'Europe',
             query: 'eu',
+            selected: true,
           }
         ]
       }

@@ -15,7 +15,7 @@
     background-color: $white;
     position: relative;
     display: flex;
-    margin: rem(0 12 12 0);
+    margin: rem(0 6 6 0);
     color: $gray;
     z-index: 10;
   }
@@ -50,7 +50,7 @@
     text-transform: uppercase;
     font-size: rem(10);
     color: $gray;
-    border-radius: $radius 0 0 $radius;
+    border-radius: 3px 0 0 3px;
     cursor: pointer;
 
     &:hover ~ .bm-drop:nth-child(2) {
@@ -66,12 +66,12 @@
     padding-right: 0;
   }
   .bm-values {
-    border-radius: 0 $radius $radius 0;
+    border-radius: 0 3px 3px 0;
     border-left: none;
     color: $black;
   }
   .bm-drop {
-    border-radius: 0 $radius $radius 0;
+    border-radius: 0 3px 3px 0;
     margin-left: -1px;
     cursor: pointer;
 
@@ -161,7 +161,7 @@
       border: 1px solid $mouse;
       box-shadow: 0 0 5px $mouse;
       background-color: $white;
-      border-radius: $radius;
+      border-radius: 3px;
       padding: rem(6 0);
       left: 0;
       top: calc(100% + 2px);
@@ -186,7 +186,7 @@
   }
   .bm-input {
     outline: none;
-    border-radius: 0 $radius $radius 0;
+    border-radius: 0 3px 3px 0;
     cursor: text;
     margin-left: -1px;
     z-index: -1;
