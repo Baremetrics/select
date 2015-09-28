@@ -17,6 +17,7 @@
     display: flex;
     margin: rem(0 12 12 0);
     color: $gray;
+    z-index: 10;
   }
   .bm-active {
     background-color: $mite;
@@ -83,7 +84,6 @@
     &.bm-open {
       box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
       border-color: $blue !important;
-      z-index: 1;
 
       .bm-caret:before, .bm-caret:after {
         background-color: $black;
@@ -153,6 +153,7 @@
       left: 0;
       top: calc(100% + 2px);
       color: $gray;
+      z-index: -1;
 
       .bm-item {
         padding: rem(6 12);
@@ -175,6 +176,7 @@
     border-radius: 0 $radius $radius 0;
     cursor: text;
     margin-left: -1px;
+    z-index: -1;
 
     &:focus {
       border-color: $blue;

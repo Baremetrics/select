@@ -15,7 +15,7 @@ $(function() {
           },
           {
             title: 'More then',
-            query: 'gt',
+            query: 'gte',
           }
         ]
       },
@@ -29,7 +29,7 @@ $(function() {
           },
           {
             title: 'Less then',
-            query: 'lt',
+            query: 'lte',
           }
         ]
       },
