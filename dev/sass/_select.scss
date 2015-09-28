@@ -1,4 +1,4 @@
-.bm-select {
+.bm-select, .bm-result {
   display: flex;
   color: $black;
   font-size: rem(12);
@@ -43,6 +43,9 @@
     align-items: center;
     position: relative;
   }
+  .bm-final {
+    background-color: $mite;
+  }
   .bm-title {
     text-transform: uppercase;
     font-size: rem(10);
@@ -56,6 +59,16 @@
         background-color: $black;
       }
     }
+  }
+  .bm-modifier {
+    border-left: none;
+    border-right: none;
+    padding-right: 0;
+  }
+  .bm-values {
+    border-radius: 0 $radius $radius 0;
+    border-left: none;
+    color: $black;
   }
   .bm-drop {
     border-radius: 0 $radius $radius 0;

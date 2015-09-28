@@ -7,15 +7,15 @@ function Select(options) {
   var self = this;
 
   $(this.tags).each(function(i, d) {
-    self.addTagHTML(d);
+    self.addSelectHTML(d);
   });
   
   $('.bm-tag', this.cloud).each(function() {
-    self.addTagActions($(this));
+    self.addSelectActions($(this));
   });
 }
 
-Select.prototype.addTagActions = function(tag) {
+Select.prototype.addSelectActions = function(tag) {
   var self = this;
 
   $('.bm-title, .bm-drop', tag).off('click').click(function() {
@@ -68,7 +68,7 @@ Select.prototype.addTagActions = function(tag) {
 
             target.addClass('bm-inner');
             $(target).after(drop_clone);
-            self.addTagActions(tag);
+            self.addSelectActions(tag);
           }
 
           $('.bm-drop span', tag).each(function() {
@@ -117,7 +117,7 @@ Select.prototype.addTagActions = function(tag) {
         target_clone.prev().addClass('bm-inner');
         target.remove();
 
-        self.addTagActions(tag);
+        self.addSelectActions(tag);
       } else {
         target.remove();
       }
@@ -138,7 +138,7 @@ Select.prototype.closeDrop = function(tag) {
   $('.bm-dropdown', tag).hide();
 }
 
-Select.prototype.addTagHTML = function(object) {
+Select.prototype.addSelectHTML = function(object) {
   var HTML = '<div class="bm-tag">'+
     '<div class="bm-title bm-cell">'+ object.title +'</div>'+
     '<div class="bm-drop bm-cell"><i class="bm-close"></i> <span>All</span> <i class="bm-caret"></i>';
@@ -168,6 +168,35 @@ Select.prototype.addTagHTML = function(object) {
   $(this.cloud).append(HTML);
 }
 
+Select.prototype.addResultHTML = function(object) {
+  console.log(object);
+
+  var HTML = '<div class="bm-tag bm-final">'+
+    '<div class="bm-title bm-cell">'+ object.title +'</div>';
+
+  if (object.modifier) {
+    HTML += '<div class="bm-modifier bm-cell">'+ object.modifier.title +'</div>';
+  }
+
+  if (object.input) {
+    HTML += '<div class="bm-values bm-cell">'+ (Number(object.input) ? object.input : '"'+ object.input +'"') +'</div>';
+  } 
+
+  else if (object.values) {
+    HTML += '<div class="bm-values bm-cell">';
+
+    $.each(object.values, function(i, d) {
+      HTML += (i == 0 ? '' : ', ') + d.title;
+    });
+
+    HTML += '</div>';
+  }
+
+  HTML += '</div>';
+
+  return HTML;
+}
+
 Select.prototype.reset = function() {
   $('.bm-active', this.cloud).each(function() {
     var d = $(this).removeClass('bm-active');
@@ -188,7 +217,10 @@ Select.prototype.call = function() {
 
     result.push({
       title: d.find('.bm-title').html(),
-      modifier: d_type == 'input' ? d.find('.bm-drop span').data('query') : null,
+      modifier: d_type == 'input' ? {
+        title: d.find('.bm-drop span').html(),
+        query: d.find('.bm-drop span').data('query')
+      } : null,
       input: (function() {
         if (d.find('.bm-input').is(':visible')) {
           return d.find('.bm-input').html();
@@ -197,7 +229,11 @@ Select.prototype.call = function() {
       values: (function() {
         if (d_type != 'input') {
           return $.map(d.find('.bm-drop').not('.bm-more'), function(e) {
-            return $(e).find('span').data('query');
+            var span = $(e).find('span');
+            return {
+              title: span.html(),
+              query: span.data('query')
+            }
           });
         }
       })()
