@@ -5,7 +5,7 @@
   "authors": [
     "Tyler van der Hoeven <hi@tyvdh.com>"
   ],
-  "description": "The Baremetrics custom selection picker a glorified select box solution. It's super flexible and allows many different types and ranges of complex selections while at the end of the day generating a very simple, concise JSON object which you can use for whatever.",
+  "description": "The Baremetrics custom selection picker is a glorified select box solution. It's super flexible and allows many different types and ranges of complex selections while at the end of the day generating a very simple, concise JSON object which you can use for whatever.",
   "main": [
     "dev/js/Select.js",
     "dev/sass/application.scss"
