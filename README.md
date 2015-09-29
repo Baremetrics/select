@@ -115,15 +115,22 @@ var filters = new Select({
 // I'm using in the demo to reset the filter selections
 // and spit out the result html
 
-$('.reset').click(function() { // Resets all the filters to 'None'
+$('.reset').click(function() {
+
+  // Resets all the filters to 'None'
   filters.reset();
 });
 
 $('.submit').click(function() {
-  var filters_array = filters.call(); // This gives you the selected tag JSON
-  var result_cloud = $('.result').empty(); // Clears out any existing tags in the result cloud
+  
+  // This gives you the selected tag JSON
+  var filters_array = filters.call();
 
-  $.each(filters_array, function(i, d) { // Loops over the results and adds each one to the result cloud
+  // Clears out any existing tags in the result cloud
+  var result_cloud = $('.result').empty();
+
+  // Loops over the results and adds each one to the result cloud
+  $.each(filters_array, function(i, d) {
     var HTML = filters.addResultHTML(d);
     result_cloud.append(HTML);
   });
@@ -135,7 +142,7 @@ $('.submit').click(function() {
 ### Layer One (`cloud` & `tag`)
 `Select` allows for one object argument with two keys, `cloud` and `tags`.
 
-- 'cloud:'
+- `'cloud:'`
   - The identifier for where we should generate the select filter tags
 - `tags:`
   - An array of tag objects
