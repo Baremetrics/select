@@ -16,7 +16,7 @@
     position: relative;
     display: flex;
     margin: rem(0 6 6 0);
-    color: $gray;
+    color: $rat;
     z-index: 10;
   }
 
@@ -60,7 +60,7 @@
   .bm-title {
     text-transform: uppercase;
     font-size: rem(10);
-    color: $gray;
+    color: $rat;
     border-radius: 3px 0 0 3px;
     cursor: pointer;
 
@@ -117,7 +117,7 @@
         display: none;
       }
       span {
-        color: $gray;
+        color: $rat;
         text-indent: 0;
       }
     }
@@ -134,7 +134,7 @@
       padding: rem(6 0);
       left: 0;
       top: calc(100% + 2px);
-      color: $gray;
+      color: $rat;
       z-index: -1;
 
       .bm-item {
@@ -171,7 +171,7 @@
         ~ .bm-caret {
 
           &:before, &:after {
-            background-color: $gray;
+            background-color: $rat;
           }
         }
       }
