@@ -181,7 +181,7 @@ First and easiest is `[Select instance].reset()` which will just clear all filte
 ### `[Select instance].call()`
 The second function is `[Select instance].call()`. This will return a clone of the original tags array you passed to the `Select` instance. The only thing which will be updated is where the `selected` keys and values are. Thus you could save this return array back to subsequent calls of the `Select` object as a sort of "what did I search for last" type deal. We do this exact thing in the Baremetrics app using `localStorage`. The more common use though obviously is to use this as your option in a call back to the server for use in some type of API call.
 
-### `[Select instance].addResultHTML([single_tag_object])`
+### `[Select instance].addResultHTML([one_tag_object])`
 The last function you'll likely want to make use of is the `[Select instance].addResultHTML([tag])`. What this allows you to do is pass in one of the tag objects from either the `call()` return or even the original object and generate a sort of static or dumb tag. In the [demo](http://baremetrics.github.io/select/) this is the function that is called when you click the "Submit" button. It only takes one object at a time though so you'll likely want to create an each loop if you plan on generating a tag cloud of all the return search objects.
 
 ---
