@@ -10,12 +10,12 @@ $(function() {
         options: [
           {
             title: 'Contains',
-            query: 'contain',
+            query: 'with',
             selected: 'Metrics',
           },
           {
-            title: 'More then',
-            query: 'gte',
+            title: 'Doesn\'t Contain',
+            query: 'without',
           }
         ]
       },
@@ -24,13 +24,12 @@ $(function() {
         type: 'bmInput',
         options: [
           {
-            title: 'Contains',
-            query: 'contain',
+            title: 'More then',
+            query: 'gte',
           },
           {
             title: 'Less then',
             query: 'lte',
-            selected: 20,
           }
         ]
       },
@@ -48,7 +47,18 @@ $(function() {
           },
           {
             title: 'Node',
-            selected: true,
+          },
+          {
+            title: 'PHP',
+          },
+          {
+            title: 'Meteor',
+          },
+          {
+            title: 'MySQL',
+          },
+          {
+            title: 'Ruby',
           }
         ]
       },
@@ -58,11 +68,11 @@ $(function() {
           {
             title: 'United States',
             query: 'us',
+            selected: true,
           },
           {
             title: 'Europe',
             query: 'eu',
-            selected: true,
           }
         ]
       }

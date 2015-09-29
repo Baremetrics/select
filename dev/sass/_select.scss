@@ -35,6 +35,11 @@
       span {
         text-indent: 1em;
         color: $black;
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: block;
       }
       .bm-close {
         display: flex;
@@ -46,6 +51,10 @@
   }
   .bm-final {
     background-color: $mite;
+
+    .bm-title {
+      cursor: default;
+    }
   }
 
   .bm-title {
@@ -132,6 +141,9 @@
         padding: rem(6 12);
         cursor: pointer;
         line-height: 1;
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
         white-space: nowrap;
 
         &:hover {
