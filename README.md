@@ -11,8 +11,8 @@ Code by [Tyler van der Hoeven](https://github.com/tyvdh)
 [View a demo](http://baremetrics.github.io/select)  
 <!--[View in a live production app](https://demo.baremetrics.com/sales/search)-->
 
-![screenshot1](http://tyler.link/dNyy/Screen%20Shot%202015-09-29%20at%2012.28.39%20PM.png)
 ![screenshot2](http://tyler.link/dNip/Screen%20Shot%202015-09-29%20at%2012.27.56%20PM.png)
+![screenshot1](http://tyler.link/dNyy/Screen%20Shot%202015-09-29%20at%2012.28.39%20PM.png)
 ![screenshot3](http://tyler.link/dNiH/Screen%20Shot%202015-09-29%20at%2012.29.19%20PM.png)
 
 ## Installing
@@ -115,7 +115,7 @@ var filters = new Select({
 // I'm using in the demo to reset the filter selections
 // and spit out the result html
 
-$('.reset').click(function() {
+$('.reset').click(function() { // Resets all the filters to 'None'
   filters.reset();
 });
 
