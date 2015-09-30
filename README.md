@@ -12,8 +12,8 @@ Code by [Tyler van der Hoeven](https://github.com/tyvdh)
 <!--[View in a live production app](https://demo.baremetrics.com/sales/search)-->
 
 ![screenshot2](http://tyler.link/dNip/Screen%20Shot%202015-09-29%20at%2012.27.56%20PM.png)
-![screenshot1](http://tyler.link/dNyy/Screen%20Shot%202015-09-29%20at%2012.28.39%20PM.png)
-![screenshot3](http://tyler.link/dNiH/Screen%20Shot%202015-09-29%20at%2012.29.19%20PM.png)
+![screenshot1](http://tyler.link/dOVh/Screen%20Shot%202015-09-30%20at%203.51.46%20PM.png)
+![screenshot3](http://tyler.link/dOe2/Screen%20Shot%202015-09-30%20at%203.51.00%20PM.png)
 
 ## Installing
 Using the select filter tags is super straight forward, you just need to target a div with the class of `bm-select` where your filter options will generate.
@@ -56,11 +56,11 @@ var filters = new Select({
       type: 'bmInput',
       options: [
         {
-          title: 'More then',
+          title: 'More than',
           query: 'gte',
         },
         {
-          title: 'Less then',
+          title: 'Less than',
           query: 'lte',
         }
       ]
