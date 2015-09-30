@@ -1,10 +1,11 @@
 html, body {
   margin: 0;
   padding: 20px;
+  font-family: $font-family;
 }
 .select, .result {
-  font-family: $font-family;
   position: relative;
+  clear: both;
 }
 .select {
   z-index: 1;
@@ -12,7 +13,48 @@ html, body {
 .result {
   z-index: 0;
 }
+h1 {
+  font-size: rem(32);
+  margin: 0 0 rem(24);
+  padding-bottom: rem(24);
+  border-bottom: 1px solid $mouse;
+
+  a {
+    color: $blue;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
 button {
-  margin: rem(0 6 6 0);
+  margin: rem(6 12 12 0);
+  appearance: none;
+  border: none;
   display: flex;
+  border-radius: 3px;
+  float: left;
+  padding: rem(6 12);
+  color: $white;
+  font-size: rem(16);
+  border: 1px solid rgba($black, 0.2);
+  outline: none;
+  cursor: pointer;
+  opacity: 0.9;
+
+  &:hover {
+    opacity: 1;
+  }
+  &.reset {
+    background-color: $rat;
+  }
+  &.submit {
+    background-color: $blue;
+  }
+}
+footer {
+  padding-top: rem(24);
+  margin-top: rem(24);
+  border-top: 1px solid $mouse;
 }
