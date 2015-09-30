@@ -90,6 +90,13 @@ Select.prototype.addSelectActions = function(tag) {
           target.removeClass('bm-inner');
           $('.bm-drop', tag).not(target).remove();
           $('.bm-dropdown li', tag).removeClass('bm-disabled');
+        } else {
+          $('.bm-dropdown li', tag).removeClass('bm-disabled');
+
+          $('.bm-drop span', tag).each(function() {
+            var query = $(this).data('query');
+            $('.bm-dropdown', tag).find('[data-query="'+ query +'"]').addClass('bm-disabled');
+          });
         }
       }
     });
