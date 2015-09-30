@@ -6,10 +6,6 @@
   * {
     box-sizing: border-box;
   }
-  [contenteditable]:empty:before {
-    content: attr(placeholder);
-    color: $rat;
-  }
 
   .bm-tag {
     background-color: $white;
@@ -217,6 +213,10 @@
       border-color: $blue;
       box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
       z-index: 1;
+    }
+    &.bm-empty:after {
+      content: "Enter value...";
+      color: $rat;
     }
   }
 }

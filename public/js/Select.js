@@ -141,6 +141,14 @@ Select.prototype.addSelectActions = function(tag) {
       target.removeClass('bm-inner').find('span').data('query', 'none').html('None');
     }
   });
+
+  $('[contenteditable]').off('keyup keydown input').on('keyup keydown input', function() {
+    if ($(this).html().length > 0) {
+      $(this).removeClass('bm-empty');
+    } else {
+      $(this).addClass('bm-empty');
+    }
+  });
 }
 
 Select.prototype.addSelectValues = function(tag, options) {
@@ -150,7 +158,7 @@ Select.prototype.addSelectValues = function(tag, options) {
       var query = d.query || d.title.replace(/[^a-zA-Z]/g, '').toLowerCase();
 
       $('[data-query="'+ query +'"]', trigger).trigger('click');
-      $('.bm-input', tag).html(d.selected);
+      $('.bm-input', tag).removeClass('bm-empty').html(d.selected);
     }
   });
 
@@ -186,7 +194,7 @@ Select.prototype.addSelectHTML = function(object) {
   HTML += '</ul></div>';
 
   if (type == 'input') {
-    HTML += '<div class="bm-input bm-cell" style="display:none;" contenteditable placeholder="Enter value..."></div>';
+    HTML += '<div class="bm-input bm-empty bm-cell" style="display:none;" contenteditable></div>';
   }
 
   HTML += '</div>';

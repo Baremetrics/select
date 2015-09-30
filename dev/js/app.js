@@ -24,11 +24,11 @@ $(function() {
         type: 'bmInput',
         options: [
           {
-            title: 'More then',
+            title: 'More than',
             query: 'gte',
           },
           {
-            title: 'Less then',
+            title: 'Less than',
             query: 'lte',
           }
         ]
