@@ -149,11 +149,13 @@ Select.prototype.addSelectActions = function(tag) {
     }
   });
 
-  $('[contenteditable]').off('keyup keydown input').on('keyup keydown input', function() {
-    if ($(this).html().length > 0) {
+  $('[contenteditable]', tag).off('keyup keydown input').on('keyup keydown input', function() {
+    var str = $(this).html().replace(/<br\s*[\/]?>/gi, '');
+
+    if (str.length > 0) {
       $(this).removeClass('bm-empty');
     } else {
-      $(this).addClass('bm-empty');
+      $(this).empty().addClass('bm-empty');
     }
   });
 }
