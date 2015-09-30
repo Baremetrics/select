@@ -203,7 +203,7 @@ Select.prototype.addSelectHTML = function(object) {
   HTML += '</ul></div>';
 
   if (type == 'input') {
-    HTML += '<div class="bm-input bm-empty bm-cell" style="display:none;" contenteditable></div>';
+    HTML += '<div class="bm-input bm-empty bm-cell" style="display:none;" contenteditable="true"></div>';
   }
 
   HTML += '</div>';
