@@ -11,7 +11,7 @@ Code by [Tyler van der Hoeven](https://github.com/tyvdh)
 [View a demo](http://baremetrics.github.io/select)  
 <!--[View in a live production app](https://demo.baremetrics.com/sales/search)-->
 
-![screenshot2](http://tyler.link/dw2y/Screen%20Shot%202015-11-27%20at%202.53.06%20PM.png)
+![screenshot2](http://tyler.link/dxB4/Screen%20Shot%202015-11-30%20at%201.14.52%20PM.png)
 ![screenshot1](http://tyler.link/dOVh/Screen%20Shot%202015-09-30%20at%203.51.46%20PM.png)
 ![screenshot3](http://tyler.link/dOe2/Screen%20Shot%202015-09-30%20at%203.51.00%20PM.png)
 
@@ -54,6 +54,7 @@ var filters = new Select({
     {
       title: 'Price',
       type: 'bmInput',
+      selected: '$129.99',
       placeholder: 'e.g. $99.99'
     },
     {
