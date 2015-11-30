@@ -22,8 +22,7 @@ $(function() {
       {
         title: 'Price',
         type: 'bmInput',
-        placeholder: 'e.g. $99.99',
-        selected: '$129.99'
+        placeholder: 'e.g. $99.99'
       },
       {
         title: 'Tech',
@@ -81,4 +80,6 @@ $(function() {
       result_cloud.append(HTML);
     });
   });
+
+
 });
