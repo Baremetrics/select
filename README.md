@@ -54,7 +54,7 @@ var filters = new Select({
     {
       title: 'Price',
       type: 'bmInput',
-      selected: '$129.99',
+      // selected: '$129.99',
       placeholder: 'e.g. $99.99'
     },
     {
