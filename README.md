@@ -52,18 +52,9 @@ var filters = new Select({
       ]
     },
     {
-      title: 'Employees',
+      title: 'Price',
       type: 'bmInput',
-      options: [
-        {
-          title: 'More than',
-          query: 'gte',
-        },
-        {
-          title: 'Less than',
-          query: 'lte',
-        }
-      ]
+      placeholder: 'e.g. $99.99'
     },
     {
       title: 'Tech',
@@ -95,16 +86,13 @@ var filters = new Select({
       ]
     },
     {
-      title: 'Continent',
+      title: 'Billing Interval',
       options: [
         {
-          title: 'United States',
-          query: 'us',
-          selected: true,
+          title: 'Annual'
         },
         {
-          title: 'Europe',
-          query: 'eu',
+          title: 'Monthly'
         }
       ]
     }
@@ -114,6 +102,7 @@ var filters = new Select({
 // Also just for kicks here are a couple actions
 // I'm using in the demo to reset the filter selections
 // and spit out the result html
+
 
 $('.reset').click(function() {
 
@@ -157,6 +146,10 @@ A tag object has three keys. `title`, `type` and `options`
   - Default is `'bmSingle'`
 - `options:`
   - Array of dropdown objects for this tag
+- `placeholder:`
+  - If `bmInput` without an options array you can set a placeholder for the input field
+- `selected:`
+  - If `bmInput` without an options array  you can set a pre-selected value for the input field
 
 ### Layer Three (`title`, `query` & `selected`)
 The options array has three allowable keys. `title`, `query` or `selected`

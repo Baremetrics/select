@@ -16,7 +16,7 @@ function Select(options) {
   
   $('.bm-tag', this.cloud).each(function(i) {
     self.addSelectActions($(this)); // Add actions to the new tags
-    self.addSelectValues($(this), self.tags[i].options); // Add values to the new tags
+    self.addSelectValues($(this), self.tags[i].options || [{selected: self.tags[i].selected}]); // Add values to the new tags
   });
 }
 
@@ -171,10 +171,15 @@ Select.prototype.addSelectValues = function(tag, options) {
   if (options) {
     $.each(options, function(i, d) {
       if (d.selected) {
-        var trigger = $('.bm-drop', tag).last().trigger('click');
-        var query = d.query || d.title.replace(/[^a-zA-Z]/g, '').toLowerCase();
+        if (d.query || d.title) {
+          var trigger = $('.bm-drop', tag).last().trigger('click');
+          var query = d.query || d.title.replace(/[^a-zA-Z]/g, '').toLowerCase();
 
-        $('[data-query="'+ query +'"]', trigger).trigger('click');
+          $('[data-query="'+ query +'"]', trigger).trigger('click');
+        } else {
+          tag.addClass('bm-active');
+        }
+
         $('.bm-input', tag).removeClass('bm-empty').html(d.selected);
       }
     });
