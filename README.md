@@ -104,7 +104,6 @@ var filters = new Select({
 // I'm using in the demo to reset the filter selections
 // and spit out the result html
 
-
 $('.reset').click(function() {
 
   // Resets all the filters to 'None'
