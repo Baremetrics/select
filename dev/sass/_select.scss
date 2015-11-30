@@ -215,7 +215,7 @@
       z-index: 1;
     }
     &.bm-empty:after {
-      content: "Enter value...";
+      content: attr(placeholder);
       color: $rat;
     }
   }

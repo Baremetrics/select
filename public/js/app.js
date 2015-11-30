@@ -20,18 +20,9 @@ $(function() {
         ]
       },
       {
-        title: 'Employees',
+        title: 'Price',
         type: 'bmInput',
-        options: [
-          {
-            title: 'More than',
-            query: 'gte',
-          },
-          {
-            title: 'Less than',
-            query: 'lte',
-          }
-        ]
+        placeholder: 'e.g. $99.99'
       },
       {
         title: 'Tech',
@@ -63,16 +54,13 @@ $(function() {
         ]
       },
       {
-        title: 'Continent',
+        title: 'Billing Interval',
         options: [
           {
-            title: 'United States',
-            query: 'us',
-            selected: true,
+            title: 'Annual'
           },
           {
-            title: 'Europe',
-            query: 'eu',
+            title: 'Monthly'
           }
         ]
       }
@@ -92,4 +80,6 @@ $(function() {
       result_cloud.append(HTML);
     });
   });
+
+
 });
