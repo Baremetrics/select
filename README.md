@@ -1,5 +1,5 @@
-# [Baremetrics](https://baremetrics.com/) Select Search Filter
-_[Baremetrics](https://baremetrics.com) provides one-click analytics & insights for Stripe. **[Get started today!](https://baremetrics.com)**_
+# [Baremetrics](https://baremetrics.com/) Date Range Picker
+_[Baremetrics](https://baremetrics.com) provides zero-setup subscription analytics & insights for Stripe, Braintree, Recurly and any other subscription source! **[Get started today!](https://baremetrics.com)**_
 
 ---
 
