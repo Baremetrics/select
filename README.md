@@ -1,4 +1,4 @@
-# [Baremetrics](https://baremetrics.com/) Date Range Picker
+# [Baremetrics](https://baremetrics.com/) Custom Selection Picker
 _[Baremetrics](https://baremetrics.com) provides zero-setup subscription analytics & insights for Stripe, Braintree, Recurly and any other subscription source! **[Get started today!](https://baremetrics.com)**_
 
 ---
