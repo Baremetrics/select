@@ -2,6 +2,8 @@
   display: flex;
   color: $black;
   font-size: rem(12);
+  position: relative;
+  z-index: 1;
 
   * {
     box-sizing: border-box;
@@ -99,7 +101,7 @@
     &.bm-open {
       box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
       border-color: $blue;
-      
+
       + .bm-drop {
         border-left: 1px solid $blue;
       }
@@ -209,11 +211,11 @@
     margin-left: -1px;
     z-index: -1;
 
-    &:focus {
-      border-color: $blue;
-      box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
-      z-index: 1;
-    }
+    // &:focus {
+    //   border-color: $blue;
+    //   box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
+    //   z-index: 1;
+    // }
     &.bm-empty:after {
       content: attr(placeholder);
       color: $rat;
